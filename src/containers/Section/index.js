@@ -41,9 +41,10 @@ export default compose(
     onClickDelete,
   }),
   lifecycle({
-    // componentDidMount() {
-    //   this.props.getCards({ sectionId: this.props.section.id });
-    // },
+    componentDidMount() {
+      console.log('section', this.props.section.id)
+      this.props.getCards({ sectionId: this.props.section.id });
+    },
   }),
   reduxForm({
     form: 'section',
