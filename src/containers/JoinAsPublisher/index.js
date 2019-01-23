@@ -1,41 +1,36 @@
 import { connect } from 'react-redux';
 import { compose, withHandlers } from 'recompose';
 import { reduxForm } from 'redux-form';
+import { push } from 'connected-react-router';
 import view from './view';
-import { fetchContent, login } from 'store/actions/confluence';
-import confluenceSelector from 'store/selectors/confluence';
+import { fetchContent } from 'store/actions/confluence';
+import { login } from 'store/actions/user';
+import userSelector from 'store/selectors/user';
 
 const onSubmit = ({
   login,
+  push,
 }) => values => {
   console.log('values', values)
   login(values);
 };
 
-const onClick = ({
-  fetchContent
-}) => () => {
-  fetchContent();
-};
-
-
 const mapStateToProps = state => ({
-  isFetching: confluenceSelector.content.isFetching(state),
-})
-
+  isFetching: userSelector.isFetching(state),
+});
 
 const mapDispatchToProps = {
   login,
   fetchContent,
+  push,
 };
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
     onSubmit,
-    onClick,
   }),
   reduxForm({
-    form: 'confluence_auth',
-  })
+    form: 'join_as_pulisher',
+  }),
 )(view);

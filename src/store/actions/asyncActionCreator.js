@@ -1,4 +1,4 @@
-import { toUpper } from 'lodash';
+import { toUpper, includes } from 'lodash';
 import { createAction } from 'redux-actions';
 import fetch from 'utils/api';
 import {
@@ -9,6 +9,12 @@ import {
 
 export const createAsyncAction = key => (method, url) => data => dispatch => {
   dispatch(createAction(`${toUpper(key)}/${FETCH_START}`)());
+
+  if (includes(['GET', 'DELETE'], toUpper(method))) {
+    for (let key in data) {
+      url = url.replace(new RegExp(':' + key, 'g'), data[key]);
+    }
+  }
 
   return fetch({ method, url, data })
     .then(response => {

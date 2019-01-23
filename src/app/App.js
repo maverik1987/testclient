@@ -3,8 +3,8 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import configureStore, { history } from './configureStore'
 import Router from './Router';
-import Layout from 'components/Layout';
-import '../components/Layout/style.css';
+import Layout from 'containers/Layout';
+import 'containers/Layout/style.css';
 
 const store = configureStore();
 

@@ -1,17 +1,19 @@
-export const createSelectors = (storeKey, entityKey) => {
-  const getState = storeKey => state => state[storeKey];
+import { get } from 'lodash';
 
-  const getEntity = (storeKey, entityKey) => state => getState(storeKey)(state)[entityKey];
-  const getData = (storeKey, entityKey) => state => getEntity(storeKey, entityKey)(state).data;
-  const getMeta = (storeKey, entityKey) => state => getEntity(storeKey, entityKey)(state).meta;
-  const isFetching = (storeKey, entityKey) => state => getMeta(storeKey, entityKey)(state).isFetching;
-  const error = (storeKey, entityKey) => state => getMeta(storeKey, entityKey)(state).error;
+export const createSelectors = keys => {
+  const getState = keys => state => get(state, keys);
+
+  const getEntity = keys => state => getState(keys)(state);
+  const getData = keys => state => getEntity(keys)(state).data;
+  const getMeta = keys => state => getEntity(keys)(state).meta;
+  const isFetching = keys => state => getMeta(keys)(state).isFetching;
+  const error = keys => state => getMeta(keys)(state).error;
 
   return {
-    getEntity: getEntity(storeKey, entityKey),
-    getData: getData(storeKey, entityKey),
-    getMeta: getMeta(storeKey, entityKey),
-    isFetching: isFetching(storeKey, entityKey),
-    error: error(storeKey, entityKey),
+    getEntity: getEntity(keys),
+    getData: getData(keys),
+    getMeta: getMeta(keys),
+    isFetching: isFetching(keys),
+    error: error(keys),
   };
 };

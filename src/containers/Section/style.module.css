@@ -1,0 +1,70 @@
+.container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.section_container {
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.new_section {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 3px 3px 17px -1px #aaa;
+    margin: 5px;
+}
+
+.title {
+    font-weight: bold;
+
+}
+
+.input {
+    float: left;
+}
+
+.plus {
+    float: left;
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
+}
+
+.plus::after {
+    content: '+';
+    font-size: 42px;
+    line-height: 0px;
+    position: absolute;
+    left: 4px;
+    top: 17px;
+}
+
+.minus {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+}
+
+.minus::after {
+    content: '-';
+    font-size: 42px;
+    line-height: 0px;
+    position: absolute;
+    left: 5px;
+    top: 9px;
+}

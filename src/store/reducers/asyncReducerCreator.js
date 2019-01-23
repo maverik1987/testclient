@@ -19,21 +19,22 @@ export const createAsyncReducer = key =>
     [`${toUpper(key)}/${FETCH_START}`]: (state, action) => ({
       ...state,
       meta: {
-        ...state.meta,
+        error: null,
         isFetching: true,
       }
     }),
-    [`${toUpper(key)}/${FETCH_SUCCESS}`]: (state, action) => {
-      console.log(action)
-      return {
+    [`${toUpper(key)}/${FETCH_SUCCESS}`]: (state, action) => ({
       data: action.payload,
       meta: {
-        ...state.meta,
+        error: null,
         isFetching: false,
       },
-    }},
+    }),
     [`${toUpper(key)}/${FETCH_FAIL}`]: (state, action) => ({
       data: null,
-      meta: { error: action.meta.error, isFetching: false }
+      meta: {
+        error: action.meta.error,
+        isFetching: false
+      },
     }),
   }, initialState);

@@ -1,0 +1,17 @@
+.container {
+    border: 1px solid #eee;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+    position: relative;
+}
+
+.container .content_wrapper {
+    width: 180px;
+    height: auto;
+
+}
+
+.card_text {
+
+}
